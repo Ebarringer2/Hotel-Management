@@ -1,28 +1,25 @@
 #include <iostream>
-#include <fstream>
 #include <string>
 #include <hotel_specs.h>
 using namespace std;
 
-class Booking 
+class Booking : Hotel
 {
 
     public:
         int id;
         int duration;
-        string hotel;
         string from;
         string to;
         int num_people;
 
-    void setBooking(int id, int duration, string from, string to, int num_people, string hotel) 
+    void setBooking(int id, int duration, string from, string to, int num_people) 
     {
         this->id = id;
         this->duration = duration;
         this->from = from;
         this->to = to;
         this->num_people = num_people;
-        this->hotel = hotel;
     }
     void getBooking() 
     {
