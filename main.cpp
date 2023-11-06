@@ -1,5 +1,4 @@
 // main script
-
 // include, using
 #include <iostream>
 #include <fstream>
@@ -29,11 +28,6 @@ int main()
     hotel.setHotel(c, r);
     hotel.SetRoomTypes();
 
-    // set arbitrary room type and capacity 
-    // e.g. 150 single rooms available
-    Roomtype single_room;
-    single_room.setAvailability("single", 150, hotel.capacity);
-
     cout << "1. Check availability." << endl;
     cout << "2. Reserve a room" << endl;
     cout << "3. Exit." << endl;
@@ -48,8 +42,13 @@ int main()
         cin >> room_type;
         cout << "Enter number of guests: " << endl;
         cin >> no_guests;
+
+        hotel.getRoomTypeAvailability(room_type);
         
-    };
+    } else if (choice == 2)
+    {
+        
+    }
     
     return 0;
 }

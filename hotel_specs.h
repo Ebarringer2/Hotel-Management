@@ -3,6 +3,7 @@
 #include <iostream>
 #include <list>
 #include <algorithm>
+#include <vector>
 using namespace std;
 
 class Hotel
@@ -10,7 +11,8 @@ class Hotel
     public:
         int capacity;
         int rate;
-        list <string> room_types;
+        vector <Roomtype> room_types_obj;
+        list <string> types;
     
     void setHotel(int capacity, int rate)
     {
@@ -26,17 +28,32 @@ class Hotel
         for (int i = 0; i < n; i++)
         {
             string element;
+            int capac;
             cout << "Enter room type " << i + 1 << ": ";
             cin >> element;
-            this->room_types.push_back(element);
+            cout << "Enter the number of rooms available for room type " << i + 1 << ": ";
+            cin >> capac;
+            this->room_types_obj.push_back(Roomtype(element, capac));
+            this->types.push_back(element);
         }
+    }
+    int getRoomTypeAvailability(string type)
+    {
+        for (const auto &roomType: room_types_obj)
+        {
+            if (roomType.type == type)
+            {
+                return roomType.availability;
+            }
+        }
+        return -1; // type found
     }
     void getHotel()
     {
         cout << "Hotel capacity: " << capacity << endl;
         cout << "Hotel rate: " << rate << endl;
         cout << "Hotel room types: " << endl;
-        for (const auto& element : room_types)
+        for (const auto& element: types)
         {
             cout << element << endl;
         }
@@ -57,10 +74,17 @@ class Roomtype : Hotel
         string type;
         int availability;
     
+    // constructor for vector instantiation method
+    Roomtype(string type, int availability)
+    {
+        this->type = type;
+        this->availability = availability;
+    }
+    
     void setAvailability(string room_type, int available, int hotel_capacity)
     {
-        auto it = find(room_types.begin(), room_types.end(), room_type);
-        if (it != room_types.end() && available <= hotel_capacity)
+        auto it = find(room_types_obj.begin(), room_types_obj.end(), room_type);
+        if (it != room_types_obj.end() && available <= hotel_capacity)
         {
             this->type = room_type;
             this->availability = available;
