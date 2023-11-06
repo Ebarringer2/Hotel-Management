@@ -4,6 +4,7 @@
 #include <fstream>
 #include <hotel_specs.h>
 #include <classes.h>
+#include <web.h>
 #include <string>
 #include <list>
 using namespace std;
@@ -47,7 +48,23 @@ int main()
         
     } else if (choice == 2)
     {
+        int n;
+        // set up booking
+        cout << "How many bookings would you like to make?" << endl;
+        cin >> n;
+        Prompt(n);
         
+        // asign guest to booking
+        string name;
+        string surname;
+        int age;
+        cout << "Enter the name for the booking: " << endl;
+        cin >> name;
+        cout << "Enter the surname for the booking: " << endl;
+        cin >> surname;
+        cout << "Enter the age of " << name << surname << ": " << endl;
+        cin >> age;
+        guest.setGuest(name, surname, age);
     }
     
     return 0;

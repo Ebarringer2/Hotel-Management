@@ -5,7 +5,6 @@ using namespace std;
 
 class Booking : Hotel
 {
-
     public:
         int id;
         int duration;
@@ -119,19 +118,10 @@ BookingData Prompt(int r)
         cin >> newbook.from;
         cout << "Enter the day of departure: ";
         cin >> newbook.to;
-        cout << "Enter the number of guests: ";
+        cout << "Enter the number of guests: " << endl;
         cin >> newbook.num_people;
 
         Booking booking;
         booking.setBooking(newbook.id, newbook.duration, newbook.from, newbook.to, newbook.num_people);
     } 
-}
-
-int main()
-{
-    int n;
-    cout << "How many bookings would you like to register?";
-    cin >> n;
-    Prompt(n);
-    return 0;  
 }
